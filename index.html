@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>37 Bodhisattva Practices — Study Groups</title>
+    <meta name="description" content="Form a study group around the 37 Bodhisattva Practices and help bring Olga Kornyushyna's wartime commentary into English.">
+    <meta property="og:title" content="37 Bodhisattva Practices — Study Groups">
+    <meta property="og:description" content="A Ukrainian practitioner wrote this commentary during the Russian invasion. Help bring it into English.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts: Inter (body) + Lora (headings/quotes) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+
+    <!-- Leaflet CSS (map) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <style>
+        * { -webkit-font-smoothing: antialiased; }
+        body { font-family: 'Inter', sans-serif; background: #F8F6F2; color: #1C1917; }
+        .font-serif { font-family: 'Lora', Georgia, serif; }
+        html { scroll-behavior: smooth; }
+
+        /* Map */
+        #map { height: 460px; border-radius: 4px; }
+        .leaflet-container { background: #EAE6DE; }
+        .leaflet-popup-content-wrapper {
+            border-radius: 4px !important;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.12) !important;
+        }
+
+        /* Form focus states */
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #92400E;
+            box-shadow: 0 0 0 3px rgba(146, 64, 14, 0.1);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #F8F6F2; }
+        ::-webkit-scrollbar-thumb { background: #C4B9A8; border-radius: 3px; }
+    </style>
+</head>
+
+<body class="bg-stone-50 text-stone-900">
+
+    <!-- ═══════════════════════════════════════
+         NAV
+    ═══════════════════════════════════════ -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#F8F6F2]/90 backdrop-blur-sm border-b border-stone-200">
+        <div class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+            <span class="text-sm font-medium tracking-wide">37 Practices</span>
+            <div class="flex items-center gap-6">
+                <a href="#how" class="text-sm text-stone-500 hover:text-stone-900 transition-colors hidden sm:block">How it works</a>
+                <a href="#groups" class="text-sm text-stone-500 hover:text-stone-900 transition-colors hidden sm:block">Groups</a>
+                <a href="#donate" class="text-sm text-stone-500 hover:text-stone-900 transition-colors hidden sm:block">Donate</a>
+                <a href="#register" class="text-sm bg-amber-800 text-white px-4 py-1.5 rounded hover:bg-amber-900 transition-colors">
+                    Join a group
+                </a>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- ═══════════════════════════════════════
+         HERO
+    ═══════════════════════════════════════ -->
+    <section class="pt-32 pb-20 px-6 max-w-5xl mx-auto">
+        <div class="max-w-2xl">
+            <p class="text-xs font-medium text-amber-800 uppercase tracking-widest mb-7">
+                A community translation project
+            </p>
+
+            <h1 class="font-serif text-5xl sm:text-6xl font-normal leading-tight mb-8">
+                37 Bodhisattva<br>Practices
+            </h1>
+
+            <p class="text-lg text-stone-600 leading-relaxed mb-5">
+                In the opening months of Russia's full-scale invasion of Ukraine, a practitioner named Olga Kornyushyna finished writing a commentary on the 37 Bodhisattva Practices. She had started it before the war. She finished it inside it.
+            </p>
+
+            <p class="text-lg text-stone-600 leading-relaxed mb-10">
+                The book — read in bomb shelters and in exile, recommended alongside Viktor Frankl as a mental health resource during the war — does not yet exist in English. Your study group is the first step toward changing that.
+            </p>
+
+            <blockquote class="border-l-2 border-amber-800 pl-6 mb-10">
+                <p class="font-serif text-lg italic text-stone-700 leading-relaxed mb-3">
+                    "I highly recommend to study and contemplate The 37 Bodhisattva Practices to all my students.
+                    This text is my representative. If you act in accordance with the 37 Bodhisattva Practices
+                    teaching and never deviate from it, you will bring immeasurable benefit to yourself and to
+                    all sentient beings."
+                </p>
+                <cite class="text-sm text-stone-500 not-italic">— Garchen Rinpoche</cite>
+            </blockquote>
+
+            <div class="flex flex-col sm:flex-row gap-3">
+                <a href="#register"
+                   class="inline-flex items-center justify-center bg-amber-800 text-white px-7 py-3.5 rounded text-sm font-medium hover:bg-amber-900 transition-colors">
+                    Start or join a study group →
+                </a>
+                <a href="#donate"
+                   class="inline-flex items-center justify-center border border-stone-300 text-stone-700 px-7 py-3.5 rounded text-sm font-medium hover:border-stone-500 transition-colors">
+                    Can't make it? Donate instead
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         STATS BAR
+    ═══════════════════════════════════════ -->
+    <section class="border-y border-stone-200 bg-white" id="stats-bar">
+        <div class="max-w-5xl mx-auto px-6 py-8 grid grid-cols-3 gap-4 text-center">
+            <div>
+                <div class="font-serif text-4xl sm:text-5xl font-normal text-stone-900 mb-1.5"
+                     id="stat-groups">—</div>
+                <div class="text-xs sm:text-sm text-stone-500 uppercase tracking-wide">groups forming</div>
+            </div>
+            <div>
+                <div class="font-serif text-4xl sm:text-5xl font-normal text-stone-900 mb-1.5"
+                     id="stat-countries">—</div>
+                <div class="text-xs sm:text-sm text-stone-500 uppercase tracking-wide">countries</div>
+            </div>
+            <div>
+                <div class="font-serif text-4xl sm:text-5xl font-normal text-stone-900 mb-1.5"
+                     id="stat-sessions">—</div>
+                <div class="text-xs sm:text-sm text-stone-500 uppercase tracking-wide">sessions held</div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         HOW IT WORKS
+    ═══════════════════════════════════════ -->
+    <section id="how" class="py-20 px-6 max-w-5xl mx-auto">
+        <h2 class="font-serif text-3xl font-normal mb-2">How it works</h2>
+        <p class="text-stone-500 text-sm mb-12">Three steps. No budget or credentials required.</p>
+
+        <div class="grid sm:grid-cols-3 gap-8 sm:gap-12">
+            <div class="border-t-2 border-amber-800 pt-6">
+                <div class="text-xs font-semibold text-amber-800 uppercase tracking-widest mb-4">01</div>
+                <h3 class="font-serif text-xl mb-3">Form a group</h3>
+                <p class="text-stone-600 text-sm leading-relaxed">
+                    Gather 3 to 10 people from your sangha or practice community.
+                    Meet monthly or biweekly — in person or on Zoom.
+                    One practice per session. The root text is free to download.
+                </p>
+            </div>
+            <div class="border-t-2 border-stone-200 pt-6">
+                <div class="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-4">02</div>
+                <h3 class="font-serif text-xl mb-3">Meet Olga</h3>
+                <p class="text-stone-600 text-sm leading-relaxed">
+                    After a few sessions, invite Olga to join your group via Zoom.
+                    She'll share what it was like to write this commentary
+                    during wartime and sit with you as a fellow practitioner.
+                </p>
+            </div>
+            <div class="border-t-2 border-stone-200 pt-6">
+                <div class="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-4">03</div>
+                <h3 class="font-serif text-xl mb-3">Fund the translation</h3>
+                <p class="text-stone-600 text-sm leading-relaxed">
+                    When enough groups have formed and met Olga,
+                    we hold a Zoom event and make the ask.
+                    Your group's participation is what makes that ask
+                    real — not abstract.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         LIVE MAP
+    ═══════════════════════════════════════ -->
+    <section id="groups" class="py-20 px-6 bg-white">
+        <div class="max-w-5xl mx-auto">
+            <div class="flex items-end justify-between mb-8">
+                <div>
+                    <h2 class="font-serif text-3xl font-normal mb-2">Groups forming now</h2>
+                    <p class="text-stone-500 text-sm">Register your group and appear on this map.</p>
+                </div>
+                <a href="#register" class="text-sm text-amber-800 hover:underline hidden sm:block">
+                    Add your group →
+                </a>
+            </div>
+            <div id="map" class="w-full shadow-sm border border-stone-200"></div>
+            <p class="text-xs text-stone-400 mt-3 text-right">
+                Map updates as groups register. Click a marker for details.
+            </p>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         REGISTER FORM
+    ═══════════════════════════════════════ -->
+    <section id="register" class="py-20 px-6 max-w-5xl mx-auto">
+        <div class="grid sm:grid-cols-2 gap-12 sm:gap-20 items-start">
+
+            <!-- Left: context -->
+            <div>
+                <h2 class="font-serif text-3xl font-normal mb-4">Register your group</h2>
+                <p class="text-stone-600 text-sm leading-relaxed mb-5">
+                    Once you register, you'll receive the full discussion toolkit by email —
+                    including the four-session guide, discussion questions for every practice,
+                    and background on Olga's wartime context.
+                </p>
+                <p class="text-stone-600 text-sm leading-relaxed mb-8">
+                    You'll also be added to the network and kept informed about the
+                    Zoom event with Olga when it's scheduled.
+                </p>
+
+                <div class="bg-stone-50 border border-stone-200 rounded p-5 mb-8">
+                    <p class="text-sm font-medium mb-3">What you receive</p>
+                    <ul class="space-y-2 text-sm text-stone-600">
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-amber-800 mt-0.5 shrink-0">✓</span>
+                            Full discussion group toolkit (PDF)
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-amber-800 mt-0.5 shrink-0">✓</span>
+                            Four-session guide with discussion questions
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-amber-800 mt-0.5 shrink-0">✓</span>
+                            Invitation to meet Olga via Zoom
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-amber-800 mt-0.5 shrink-0">✓</span>
+                            Connection to other groups worldwide
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="border-t border-stone-200 pt-6">
+                    <p class="text-xs text-stone-400 leading-relaxed">
+                        You don't need a large group. Three or four people is enough.
+                        No prior experience with the text is required.
+                        No fees.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right: form -->
+            <div>
+                <!--
+                ════════════════════════════════════
+                SETUP: Replace YOUR_FORM_ID below
+                ════════════════════════════════════
+                1. Go to formspree.io and create a free account
+                2. Create a new form — name it "37 Practices Group Registration"
+                3. Copy the form ID (looks like: xpzgkwqr)
+                4. Replace YOUR_FORM_ID with it
+                5. In Formspree settings → enable "Email Notifications" for Brian
+                6. In Formspree settings → enable "Auto-response" to send the
+                   welcome email to registrants (paste toolkit content or link there)
+                ════════════════════════════════════
+                -->
+                <form
+                    id="group-form"
+                    action="https://formspree.io/f/YOUR_FORM_ID"
+                    method="POST"
+                    class="space-y-4"
+                >
+                    <div>
+                        <label class="block text-sm font-medium text-stone-700 mb-1.5">
+                            Your name
+                        </label>
+                        <input
+                            type="text"
+                            name="name"
+                            required
+                            autocomplete="name"
+                            class="w-full border border-stone-300 rounded px-3.5 py-2.5 text-sm bg-white transition-all"
+                            placeholder="Full name"
+                        >
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-stone-700 mb-1.5">
+                            Email
+                        </label>
+                        <input
+                            type="email"
+                            name="email"
+                            required
+                            autocomplete="email"
+                            class="w-full border border-stone-300 rounded px-3.5 py-2.5 text-sm bg-white transition-all"
+                            placeholder="you@example.com"
+                        >
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-stone-700 mb-1.5">City</label>
+                            <input
+                                type="text"
+                                name="city"
+                                required
+                                class="w-full border border-stone-300 rounded px-3.5 py-2.5 text-sm bg-white transition-all"
+                                placeholder="City"
+                            >
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-stone-700 mb-1.5">Country</label>
+                            <input
+                                type="text"
+                                name="country"
+                                required
+                                class="w-full border border-stone-300 rounded px-3.5 py-2.5 text-sm bg-white transition-all"
+                                placeholder="Country"
+                            >
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-stone-700 mb-1.5">Format</label>
+                        <select
+                            name="format"
+                            class="w-full border border-stone-300 rounded px-3.5 py-2.5 text-sm bg-white transition-all"
+                        >
+                            <option value="in-person">In person</option>
+                            <option value="online">Online (Zoom / video)</option>
+                            <option value="hybrid">Hybrid</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-stone-700 mb-1.5">
+                            Approximate group size
+                        </label>
+                        <select
+                            name="group_size"
+                            class="w-full border border-stone-300 rounded px-3.5 py-2.5 text-sm bg-white transition-all"
+                        >
+                            <option value="2-4">2 – 4 people</option>
+                            <option value="5-8" selected>5 – 8 people</option>
+                            <option value="9-15">9 – 15 people</option>
+                            <option value="15+">15 or more</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-stone-700 mb-1.5">
+                            Anything else?
+                            <span class="text-stone-400 font-normal">(optional)</span>
+                        </label>
+                        <textarea
+                            name="message"
+                            rows="3"
+                            class="w-full border border-stone-300 rounded px-3.5 py-2.5 text-sm bg-white transition-all resize-none"
+                            placeholder="Your sangha, how you found this, questions for Olga..."
+                        ></textarea>
+                    </div>
+
+                    <!-- Formspree config fields -->
+                    <input type="hidden" name="_subject" value="New group registered — 37 Practices">
+                    <input type="text" name="_gotcha" style="display:none">
+
+                    <button
+                        type="submit"
+                        id="submit-btn"
+                        class="w-full bg-amber-800 text-white py-3.5 rounded text-sm font-medium hover:bg-amber-900 transition-colors mt-1"
+                    >
+                        Register your group
+                    </button>
+
+                    <p class="text-xs text-stone-400 text-center">
+                        You'll receive the toolkit by email within a few minutes.
+                    </p>
+                </form>
+
+                <!-- Success message (hidden until form submits) -->
+                <div id="form-success" class="hidden text-center py-12 px-4">
+                    <div class="text-4xl mb-5">✓</div>
+                    <h3 class="font-serif text-2xl mb-3">You're registered.</h3>
+                    <p class="text-stone-600 text-sm leading-relaxed max-w-xs mx-auto">
+                        Check your email for the discussion toolkit.
+                        Brian will be in touch about the Zoom event with Olga.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         DONATE
+    ═══════════════════════════════════════ -->
+    <section id="donate" class="py-20 px-6 bg-stone-900 text-white">
+        <div class="max-w-5xl mx-auto grid sm:grid-cols-2 gap-12 sm:gap-20 items-center">
+            <div>
+                <p class="text-xs font-semibold text-amber-400 uppercase tracking-widest mb-6">
+                    Can't make it to a group?
+                </p>
+                <h2 class="font-serif text-3xl font-normal mb-6 leading-snug">
+                    Help bring this book<br>into English
+                </h2>
+                <p class="text-stone-300 text-sm leading-relaxed mb-4">
+                    Olga's commentary has accompanied readers in bomb shelters,
+                    on occupied territories, and in exile. Recommended alongside
+                    Viktor Frankl and Nassim Taleb as a mental health resource
+                    during the war in Ukraine.
+                </p>
+                <p class="text-stone-300 text-sm leading-relaxed">
+                    It does not yet exist in English.
+                    A donation of any size goes directly toward translation
+                    and publication costs.
+                </p>
+            </div>
+            <div>
+                <!--
+                SETUP: Replace YOUR_GOFUNDME_LINK below
+                with your actual GoFundMe campaign URL
+                -->
+                <a
+                    href="YOUR_GOFUNDME_LINK"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center justify-center w-full sm:w-auto bg-amber-500 hover:bg-amber-400 text-stone-900 px-8 py-4 rounded text-sm font-semibold transition-colors mb-3"
+                >
+                    Donate to the translation →
+                </a>
+                <p class="text-stone-600 text-xs">Opens GoFundMe in a new tab.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         ABOUT
+    ═══════════════════════════════════════ -->
+    <section id="about" class="py-20 px-6 max-w-5xl mx-auto">
+        <div class="grid sm:grid-cols-2 gap-12 sm:gap-20">
+            <div>
+                <h2 class="font-serif text-3xl font-normal mb-6">About the book</h2>
+                <p class="text-stone-600 text-sm leading-relaxed mb-4">
+                    <em>37 Buddhist Practices: How to Survive Turbulent Times</em> is a 310-page
+                    commentary on Thogme Zangpo's 14th-century text — one of the most important
+                    in the Tibetan Buddhist tradition, placed by Kyabjé Trulshik Rinpoche as the
+                    middle text of the lojong (mind training) canon.
+                </p>
+                <p class="text-stone-600 text-sm leading-relaxed mb-4">
+                    The book weaves classical teachings with modern psychology and neuroscience,
+                    written in accessible, non-religious language. It is a practitioner's account
+                    of how these teachings function in a life during extreme difficulty — not a
+                    dry scholarly commentary.
+                </p>
+                <p class="text-stone-600 text-sm leading-relaxed">
+                    It currently exists only in Ukrainian. This campaign is the first step
+                    toward an English edition.
+                </p>
+            </div>
+            <div>
+                <h2 class="font-serif text-3xl font-normal mb-6">About Olga</h2>
+                <p class="text-stone-600 text-sm leading-relaxed mb-4">
+                    Olga Kornyushyna is a Ukrainian author and long-term Tibetan Buddhist
+                    practitioner. She began writing this commentary before Russia's full-scale
+                    invasion and completed it in the war's opening months.
+                </p>
+                <p class="text-stone-600 text-sm leading-relaxed mb-4">
+                    She is open to joining study groups via Zoom — not as a formal teacher,
+                    but as a fellow practitioner who wrote these words under conditions most
+                    of us will never face.
+                </p>
+                <p class="text-stone-600 text-sm leading-relaxed">
+                    To invite Olga to your group, register above and email Brian once
+                    your group has met two or three times.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         FOOTER
+    ═══════════════════════════════════════ -->
+    <footer class="border-t border-stone-200 py-10 px-6 bg-white">
+        <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+            <div>
+                <p class="text-sm font-medium mb-1">37 Bodhisattva Practices — Discussion Groups</p>
+                <p class="text-xs text-stone-400">
+                    Supporting the translation of Olga Kornyushyna's commentary into English.
+                    March 2026.
+                </p>
+            </div>
+            <div class="flex flex-col sm:items-end gap-2.5">
+                <a
+                    href="https://garchen.net/library-booklets"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-sm text-amber-800 hover:underline"
+                >
+                    Download the root text (free) →
+                </a>
+                <a
+                    href="https://37practices.info"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-xs text-stone-400 hover:text-stone-600 transition-colors"
+                >
+                    Garchen Rinpoche's commentary
+                </a>
+                <a
+                    href="mailto:brianjnuckols@gmail.com"
+                    class="text-xs text-stone-400 hover:text-stone-600 transition-colors"
+                >
+                    Questions? Email Brian
+                </a>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ═══════════════════════════════════════
+         SCRIPTS
+    ═══════════════════════════════════════ -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+    // ─────────────────────────────────────────────────────────
+    // GROUP DATA
+    // ─────────────────────────────────────────────────────────
+    //
+    // OPTION A — Manual (update this array as groups register)
+    // Add entries in the format:
+    // { city: "City Name", country: "Country", lat: 00.0000, lng: 00.0000, size: "5–8", format: "Online" }
+    //
+    // OPTION B — Live from Google Sheets (recommended)
+    // 1. In your Google Sheet: File → Share → Publish to web → CSV
+    // 2. Copy the published CSV URL
+    // 3. Replace the `groups` array with the loadGroupsFromSheet() function below
+    // 4. Your sheet columns should be: city, country, lat, lng, size, format
+    //    (get lat/lng from city name at latlong.net)
+    //
+    // async function loadGroupsFromSheet() {
+    //     const SHEET_URL = 'YOUR_PUBLISHED_CSV_URL_HERE';
+    //     const res = await fetch(SHEET_URL);
+    //     const text = await res.text();
+    //     const rows = text.trim().split('\n').slice(1);
+    //     return rows.map(row => {
+    //         const [city, country, lat, lng, size, format] = row.split(',').map(s => s.replace(/"/g,'').trim());
+    //         return { city, country, lat: parseFloat(lat), lng: parseFloat(lng), size, format };
+    //     }).filter(g => !isNaN(g.lat));
+    // }
+    // Then replace `addMarkersToMap(groups)` with:
+    // loadGroupsFromSheet().then(addMarkersToMap);
+    // ─────────────────────────────────────────────────────────
+
+    const groups = [
+        // Seed data — remove these once real groups register
+        { city: "San Francisco", country: "USA",     lat: 37.7749, lng: -122.4194, size: "5–8",  format: "In person" },
+        { city: "London",        country: "UK",      lat: 51.5074, lng: -0.1278,   size: "5–8",  format: "Online"    },
+        { city: "New York",      country: "USA",     lat: 40.7128, lng: -74.0060,  size: "2–4",  format: "Hybrid"    },
+        { city: "Berlin",        country: "Germany", lat: 52.5200, lng: 13.4050,   size: "5–8",  format: "In person" },
+        { city: "Kyiv",          country: "Ukraine", lat: 50.4501, lng: 30.5234,   size: "2–4",  format: "Online"    },
+    ];
+
+    // ─────────────────────────────────────────────────────────
+    // MAP SETUP
+    // ─────────────────────────────────────────────────────────
+
+    const map = L.map('map', {
+        center: [30, 10],
+        zoom: 2,
+        zoomControl: true,
+        scrollWheelZoom: false,
+        attributionControl: true,
+    });
+
+    // CartoDB Positron — clean, minimal, no clutter
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors © <a href="https://carto.com/">CARTO</a>',
+        maxZoom: 18,
+    }).addTo(map);
+
+    // Custom marker — small amber dot
+    const markerIcon = L.divIcon({
+        className: '',
+        html: `<div style="
+            width: 12px;
+            height: 12px;
+            background: #92400E;
+            border-radius: 50%;
+            border: 2.5px solid white;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+        "></div>`,
+        iconSize: [12, 12],
+        iconAnchor: [6, 6],
+        popupAnchor: [0, -10],
+    });
+
+    function addMarkersToMap(groupData) {
+        groupData.forEach(g => {
+            L.marker([g.lat, g.lng], { icon: markerIcon })
+                .addTo(map)
+                .bindPopup(`
+                    <div style="font-family: Inter, sans-serif; font-size: 13px; line-height: 1.6; padding: 2px 0;">
+                        <strong>${g.city}, ${g.country}</strong><br>
+                        <span style="color: #78716C;">${g.size} people &middot; ${g.format}</span>
+                    </div>
+                `);
+        });
+    }
+
+    addMarkersToMap(groups);
+
+    // ─────────────────────────────────────────────────────────
+    // STATS COUNTER
+    // ─────────────────────────────────────────────────────────
+    //
+    // Update these values manually, or connect to Google Sheets
+    // Same pattern as the map data fetch above.
+
+    const stats = {
+        groups:    groups.length,
+        countries: new Set(groups.map(g => g.country)).size,
+        sessions:  0,  // update manually or pull from sheet
+    };
+
+    function animateCount(el, target) {
+        if (target === 0) { el.textContent = '0'; return; }
+        let current = 0;
+        const step = Math.max(1, Math.floor(target / 24));
+        const timer = setInterval(() => {
+            current = Math.min(current + step, target);
+            el.textContent = current;
+            if (current >= target) clearInterval(timer);
+        }, 45);
+    }
+
+    // Trigger animation when stats section enters viewport
+    const statsBar = document.getElementById('stats-bar');
+    const statsObserver = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+            animateCount(document.getElementById('stat-groups'),    stats.groups);
+            animateCount(document.getElementById('stat-countries'), stats.countries);
+            animateCount(document.getElementById('stat-sessions'),  stats.sessions);
+            statsObserver.disconnect();
+        }
+    }, { threshold: 0.5 });
+    if (statsBar) statsObserver.observe(statsBar);
+
+    // ─────────────────────────────────────────────────────────
+    // FORM SUBMISSION
+    // ─────────────────────────────────────────────────────────
+
+    const form       = document.getElementById('group-form');
+    const successMsg = document.getElementById('form-success');
+    const submitBtn  = document.getElementById('submit-btn');
+
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        submitBtn.textContent = 'Sending…';
+        submitBtn.disabled = true;
+
+        try {
+            const res = await fetch(form.action, {
+                method:  'POST',
+                body:    new FormData(form),
+                headers: { 'Accept': 'application/json' },
+            });
+
+            if (res.ok) {
+                form.classList.add('hidden');
+                successMsg.classList.remove('hidden');
+                successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                submitBtn.textContent = 'Something went wrong — please try again';
+                submitBtn.disabled = false;
+            }
+        } catch (err) {
+            submitBtn.textContent = 'Something went wrong — please try again';
+            submitBtn.disabled = false;
+        }
+    });
+
+    </script>
+</body>
+</html>
